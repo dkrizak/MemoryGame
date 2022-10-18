@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.memorygame.MemoryGameController">
+   <children>
+      <Button fx:id="0" focusTraversable="false" layoutX="45.0" layoutY="70.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="1" focusTraversable="false" layoutX="240.0" layoutY="70.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="2" focusTraversable="false" layoutX="435.0" layoutY="70.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="3" focusTraversable="false" layoutX="630.0" layoutY="70.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="4" focusTraversable="false" layoutX="825.0" layoutY="70.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="5" focusTraversable="false" layoutX="45.0" layoutY="240.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="6" focusTraversable="false" layoutX="240.0" layoutY="240.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="7" focusTraversable="false" layoutX="435.0" layoutY="240.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="8" focusTraversable="false" layoutX="630.0" layoutY="240.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="9" focusTraversable="false" layoutX="825.0" layoutY="240.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="10" focusTraversable="false" layoutX="45.0" layoutY="410.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="11" focusTraversable="false" layoutX="240.0" layoutY="410.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="12" focusTraversable="false" layoutX="435.0" layoutY="410.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="13" focusTraversable="false" layoutX="630.0" layoutY="410.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="14" focusTraversable="false" layoutX="825.0" layoutY="410.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="15" focusTraversable="false" layoutX="45.0" layoutY="580.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="16" focusTraversable="false" layoutX="240.0" layoutY="580.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="17" focusTraversable="false" layoutX="435.0" layoutY="580.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="18" focusTraversable="false" layoutX="630.0" layoutY="580.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="19" focusTraversable="false" layoutX="825.0" layoutY="580.0" mnemonicParsing="false" onAction="#cardClick" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 5%; -fx-border-radius: 5%;" />
+      <Button fx:id="playAgainButton" layoutX="437.0" layoutY="754.0" mnemonicParsing="false" onAction="#playAgain" opacity="0.0" prefHeight="25.0" prefWidth="150.0" text="Play again!">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <Label fx:id="numberOfAttempts" layoutX="723.0" layoutY="25.0" prefHeight="28.0" prefWidth="239.0" text="Number of Attempts: 0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
