@@ -1,3 +1,3 @@
 # MemoryGame
 
-Simple Memory game made by JavaFx.
+Simple Memory game made with JavaFx.
