@@ -25,16 +25,16 @@ public class MemoryGameController {
     @FXML
     private Label highScoreLabel;
     private String[] imgSources = {
-            "src/main/java/com/example/memorygame/pictures/building.png",
-            "src/main/java/com/example/memorygame/pictures/coin.png",
-            "src/main/java/com/example/memorygame/pictures/computer.png",
-            "src/main/java/com/example/memorygame/pictures/dollar.png",
-            "src/main/java/com/example/memorygame/pictures/folder.png",
-            "src/main/java/com/example/memorygame/pictures/home.png",
-            "src/main/java/com/example/memorygame/pictures/microphone.png",
-            "src/main/java/com/example/memorygame/pictures/pen.png",
-            "src/main/java/com/example/memorygame/pictures/search.png",
-            "src/main/java/com/example/memorygame/pictures/train.png"
+            "src/main/java/com/example/memorygame/pictures/building.jpg",
+            "src/main/java/com/example/memorygame/pictures/coin.jpg",
+            "src/main/java/com/example/memorygame/pictures/computer.jpg",
+            "src/main/java/com/example/memorygame/pictures/dollar.jpg",
+            "src/main/java/com/example/memorygame/pictures/folder.jpg",
+            "src/main/java/com/example/memorygame/pictures/home.jpg",
+            "src/main/java/com/example/memorygame/pictures/microphone.jpg",
+            "src/main/java/com/example/memorygame/pictures/pen.jpg",
+            "src/main/java/com/example/memorygame/pictures/search.jpg",
+            "src/main/java/com/example/memorygame/pictures/train.jpg"
     };
 
     private Image[] images = new Image[20];
@@ -51,39 +51,6 @@ public class MemoryGameController {
     private int highScore = Integer.MAX_VALUE;
     private DropShadow dropShadow = new DropShadow();
 
-    protected void randomizeImages() {
-        int i = 0;
-        int num = 0;
-        ArrayList<Integer> numbers = new ArrayList<>();
-
-        while (i < images.length) {
-            num = (int)(Math.random() * images.length);
-            if (!numbers.contains(num)) {
-                randomImages[i] = images[num];
-                numbers.add(num);
-                i++;
-            }
-        }
-    }
-
-    public void playAgain() {
-
-        for (int i = 0; i < pane.getChildren().size(); i++) {
-            if (pane.getChildren().get(i) instanceof ImageView) {
-                ((ImageView) pane.getChildren().get(i)).setImage(background);
-                pane.getChildren().get(i).setEffect(null);
-                pane.getChildren().get(i).setMouseTransparent(false);
-            }
-        }
-        gameStarted = false;
-        playAgainButton.setOpacity(0);
-        numberOfMatches = 0;
-        attempts = 0;
-        numberOfAttempts.setText("Number of Attempts: " + attempts);
-    }
-    public void closeGame() {
-        System.exit(0);
-    }
     @FXML
     public void initialize() {
 
@@ -169,5 +136,38 @@ public class MemoryGameController {
                 highScoreLabel.setText("High Score: " + highScore);
             }
         }
+    }
+    protected void randomizeImages() {
+        int i = 0;
+        int num = 0;
+        ArrayList<Integer> numbers = new ArrayList<>();
+
+        while (i < images.length) {
+            num = (int)(Math.random() * images.length);
+            if (!numbers.contains(num)) {
+                randomImages[i] = images[num];
+                numbers.add(num);
+                i++;
+            }
+        }
+    }
+
+    public void playAgain() {
+
+        for (int i = 0; i < pane.getChildren().size(); i++) {
+            if (pane.getChildren().get(i) instanceof ImageView) {
+                ((ImageView) pane.getChildren().get(i)).setImage(background);
+                pane.getChildren().get(i).setEffect(null);
+                pane.getChildren().get(i).setMouseTransparent(false);
+            }
+        }
+        gameStarted = false;
+        playAgainButton.setOpacity(0);
+        numberOfMatches = 0;
+        attempts = 0;
+        numberOfAttempts.setText("Number of Attempts: " + attempts);
+    }
+    public void closeGame() {
+        System.exit(0);
     }
 }

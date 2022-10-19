@@ -13,7 +13,7 @@
     <children>
         <Button fx:id="playAgainButton" layoutX="437.0" layoutY="754.0" mnemonicParsing="false" onAction="#playAgain" opacity="0.0" prefHeight="25.0" prefWidth="150.0" text="Play again!">
             <font>
-                <Font name="System Bold" size="17.0" />
+                <Font name="Wingdings" size="19.0" />
             </font>
         </Button>
         <Label fx:id="numberOfAttempts" layoutX="723.0" layoutY="31.0" prefHeight="28.0" prefWidth="239.0" text="Number of Attempts: 0" textFill="#000000b2">
@@ -26,11 +26,6 @@
                 <Menu mnemonicParsing="false" text="File">
                     <items>
                         <MenuItem fx:id="closeGame" mnemonicParsing="false" onAction="#closeGame" text="Close" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
