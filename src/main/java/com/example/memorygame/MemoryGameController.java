@@ -1,13 +1,17 @@
 package com.example.memorygame;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MemoryGameController {
@@ -20,96 +24,42 @@ public class MemoryGameController {
     private Label numberOfAttempts;
     @FXML
     private Label highScoreLabel;
+    private String[] imgSources = {
+            "src/main/java/com/example/memorygame/pictures/building.png",
+            "src/main/java/com/example/memorygame/pictures/coin.png",
+            "src/main/java/com/example/memorygame/pictures/computer.png",
+            "src/main/java/com/example/memorygame/pictures/dollar.png",
+            "src/main/java/com/example/memorygame/pictures/folder.png",
+            "src/main/java/com/example/memorygame/pictures/home.png",
+            "src/main/java/com/example/memorygame/pictures/microphone.png",
+            "src/main/java/com/example/memorygame/pictures/pen.png",
+            "src/main/java/com/example/memorygame/pictures/search.png",
+            "src/main/java/com/example/memorygame/pictures/train.png"
+    };
 
-    @FXML
-    private MenuItem closeGame;
+    private Image[] images = new Image[20];
+    private Image[] randomImages = new Image[images.length];
+    private Image background;
 
-    private String[] colors = {"#006400","#006400", "#00008b", "#00008b", "#b03060", "#b03060", "#ff4500", "#ff4500", "#ffff00", "#ffff00",
-                                "#deb887", "#deb887", "#00ff00", "#00ff00", "#00ffff", "#00ffff", "#ff00ff", "#ff00ff", "#6495ed", "#6495ed"};
-    private String[] randomColors = new String[colors.length];
+    private ImageView openedImage, previousImage;
 
     private boolean gameStarted = false;
     private boolean openedCard = false;
-    private Button openedButton, previousButton;
-
     private int clickCount = 0;
     private int numberOfMatches = 0;
     private int attempts = 0;
     private int highScore = Integer.MAX_VALUE;
     private DropShadow dropShadow = new DropShadow();
 
-    @FXML
-    protected void cardClick(ActionEvent event) {
-
-        if (!gameStarted) {
-            randomizeColors();
-            gameStarted = true;
-        }
-
-        Button btn = (Button) event.getTarget();
-
-        if (clickCount == 2) {
-            clickCount = 0;
-            openedCard = false;
-            //openedButton.setDisable(false);
-            openedButton.setMouseTransparent(false);
-            openedButton.setStyle("-fx-background-radius: 5%; -fx-border-radius: 5%");
-            openedButton.setEffect(null);
-            //previousButton.setDisable(false);
-            previousButton.setMouseTransparent(false);
-            previousButton.setStyle("-fx-background-radius: 5%; -fx-border-radius: 5%");
-            previousButton.setEffect(null);
-            return;
-        }
-
-        int colorIndex = Integer.parseInt(btn.getId());
-
-        if (openedCard) {
-            //btn.setDisable(true);
-            btn.setMouseTransparent(true);
-            btn.setStyle("-fx-background-color: " + randomColors[colorIndex] + ";-fx-background-radius: 5%; -fx-border-radius: 5%;");
-            btn.setEffect(dropShadow);
-            //btn.setEffect(dropShadow);
-            attempts++;
-            numberOfAttempts.setText("Number of Attempts: " + attempts);
-            if (randomColors[colorIndex].equals(randomColors[Integer.parseInt(openedButton.getId())])){
-                openedCard = false;
-                clickCount = 0;
-                numberOfMatches++;
-            } else {
-                clickCount = 2;
-                previousButton = openedButton;
-                openedButton = btn;
-            }
-        } else {
-            //btn.setDisable(true);
-            btn.setMouseTransparent(true);
-            btn.setStyle("-fx-background-color: " + randomColors[colorIndex] + ";-fx-background-radius: 5%; -fx-border-radius: 5%");
-            //btn.setStyle("-fx-graphic: url('/pictures/coin.png')");
-            btn.setEffect(dropShadow);
-            openedButton = btn;
-            openedCard = true;
-        }
-
-        if (numberOfMatches == 10) {
-            playAgainButton.setOpacity(1);
-            if (attempts < highScore) {
-                highScore = attempts;
-                highScoreLabel.setText("High Score: " + highScore);
-            }
-        }
-
-    }
-
-    protected void randomizeColors() {
+    protected void randomizeImages() {
         int i = 0;
         int num = 0;
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        ArrayList<Integer> numbers = new ArrayList<>();
 
-        while (i < colors.length) {
-            num = (int)(Math.random() * colors.length);
+        while (i < images.length) {
+            num = (int)(Math.random() * images.length);
             if (!numbers.contains(num)) {
-                randomColors[i] = colors[num];
+                randomImages[i] = images[num];
                 numbers.add(num);
                 i++;
             }
@@ -119,9 +69,8 @@ public class MemoryGameController {
     public void playAgain() {
 
         for (int i = 0; i < pane.getChildren().size(); i++) {
-            if (pane.getChildren().get(i) instanceof Button && pane.getChildren().get(i).getId().length() < 3) {
-                pane.getChildren().get(i).setDisable(false);
-                pane.getChildren().get(i).setStyle("-fx-background-radius: 5%; -fx-border-radius: 5%");
+            if (pane.getChildren().get(i) instanceof ImageView) {
+                ((ImageView) pane.getChildren().get(i)).setImage(background);
                 pane.getChildren().get(i).setEffect(null);
                 pane.getChildren().get(i).setMouseTransparent(false);
             }
@@ -134,5 +83,91 @@ public class MemoryGameController {
     }
     public void closeGame() {
         System.exit(0);
+    }
+    @FXML
+    public void initialize() {
+
+        try {
+            InputStream stream = new FileInputStream("src/main/java/com/example/memorygame/pictures/background.jpg");
+            background = new Image(stream);
+
+            for (int i = 0; i < pane.getChildren().size(); i++) {
+                if (pane.getChildren().get(i) instanceof ImageView) {
+                    ((ImageView)pane.getChildren().get(i)).setImage(background);
+                    pane.getChildren().get(i).setOnMouseClicked(e -> imgClick(e));
+                }
+            }
+
+            Image image = null;
+            int j = 0;
+            for (int i = 0; i < images.length; i++) {
+
+                if (i % 2 == 0) {
+                    stream = new FileInputStream(imgSources[j]);
+                    image = new Image(stream);
+                    j++;
+                }
+
+                images[i] = image;
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void imgClick(MouseEvent event) {
+
+        if (!gameStarted) {
+            randomizeImages();
+            gameStarted = true;
+        }
+
+        ImageView imageView = (ImageView) event.getSource();
+
+        if (clickCount == 2) {
+            clickCount = 0;
+            openedCard = false;
+            openedImage.setMouseTransparent(false);
+            openedImage.setImage(background);
+            openedImage.setEffect(null);
+            previousImage.setMouseTransparent(false);
+            previousImage.setImage(background);
+            previousImage.setEffect(null);
+            return;
+        }
+
+        int colorIndex = Integer.parseInt(imageView.getId());
+
+        if (openedCard) {
+            imageView.setMouseTransparent(true);
+            imageView.setImage(randomImages[colorIndex]);
+            imageView.setEffect(dropShadow);
+            attempts++;
+            numberOfAttempts.setText("Number of Attempts: " + attempts);
+            if (randomImages[colorIndex].equals(randomImages[Integer.parseInt(openedImage.getId())])){
+                openedCard = false;
+                clickCount = 0;
+                numberOfMatches++;
+            } else {
+                clickCount = 2;
+                previousImage = openedImage;
+                openedImage = imageView;
+            }
+        } else {
+            imageView.setMouseTransparent(true);
+            imageView.setImage(randomImages[colorIndex]);
+            imageView.setEffect(dropShadow);
+            openedImage = imageView;
+            openedCard = true;
+        }
+
+        if (numberOfMatches == 10) {
+            playAgainButton.setOpacity(1);
+            if (attempts < highScore) {
+                highScore = attempts;
+                highScoreLabel.setText("High Score: " + highScore);
+            }
+        }
     }
 }
