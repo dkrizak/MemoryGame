@@ -18,6 +18,8 @@ public class MemoryGameController {
     private AnchorPane pane;
     @FXML
     private Label numberOfAttempts;
+    @FXML
+    private Label highScoreLabel;
 
     @FXML
     private MenuItem closeGame;
@@ -33,6 +35,7 @@ public class MemoryGameController {
     private int clickCount = 0;
     private int numberOfMatches = 0;
     private int attempts = 0;
+    private int highScore = Integer.MAX_VALUE;
     private DropShadow dropShadow = new DropShadow();
 
     @FXML
@@ -90,6 +93,10 @@ public class MemoryGameController {
 
         if (numberOfMatches == 10) {
             playAgainButton.setOpacity(1);
+            if (attempts < highScore) {
+                highScore = attempts;
+                highScoreLabel.setText("High Score: " + highScore);
+            }
         }
 
     }
@@ -116,6 +123,7 @@ public class MemoryGameController {
                 pane.getChildren().get(i).setDisable(false);
                 pane.getChildren().get(i).setStyle("-fx-background-radius: 5%; -fx-border-radius: 5%");
                 pane.getChildren().get(i).setEffect(null);
+                pane.getChildren().get(i).setMouseTransparent(false);
             }
         }
         gameStarted = false;
