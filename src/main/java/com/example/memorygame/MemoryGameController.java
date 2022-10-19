@@ -61,7 +61,7 @@ public class MemoryGameController {
             for (int i = 0; i < pane.getChildren().size(); i++) {
                 if (pane.getChildren().get(i) instanceof ImageView) {
                     ((ImageView)pane.getChildren().get(i)).setImage(background);
-                    pane.getChildren().get(i).setOnMouseClicked(e -> imgClick(e));
+                    pane.getChildren().get(i).setOnMouseClicked(this::imgClick);
                 }
             }
 
