@@ -50,7 +50,7 @@ public class MemoryGameController {
     private int attempts = 0;
     private int highScore = Integer.MAX_VALUE;
     private DropShadow dropShadow = new DropShadow();
-
+    
     @FXML
     public void initialize() {
 
