@@ -6,7 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class MemoryGame extends Application {
     @Override
@@ -16,7 +18,8 @@ public class MemoryGame extends Application {
         stage.setTitle("Memory Game");
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.getIcons().add(new Image("C:\\DEV\\Java Projects\\MemoryGame\\src\\main\\java\\com\\example\\memorygame\\pictures\\logo.png"));
+        InputStream stream = new FileInputStream("src/main/java/com/example/memorygame/pictures/logo.png");
+        stage.getIcons().add(new Image(stream));
         stage.show();
     }
 
